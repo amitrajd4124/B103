@@ -1,0 +1,373 @@
+
+# que 1.Find the data type of every value in a mixed list.
+
+
+lst = [10, "hello", 3.14, True]
+for val in lst:
+    print(val, "->", type(val))
+
+ # que 2.Convert a nested list into a tuple of tuples.
+
+nested_lst = [[1, 2], [3, 4], [5, 6]]
+result = tuple(tuple(item) for item in nested_lst)
+print(result)  # ((1, 2), (3, 4), (5, 6))
+
+#que 3. Remove duplicates from a mixed list while preserving order
+
+lst = [1, "a", 2, "a", 1, 3]
+unique_lst = []
+for item in lst:
+    if item not in unique_lst:
+        unique_lst.append(item)
+print(unique_lst)  # [1, 'a', 2, 3]
+
+#que4.Check whether a number is a power of 2 using bitwise AND
+
+n = 16
+is_power_of_2 = (n > 0) and (n & (n - 1) == 0)
+print(is_power_of_2)  # True
+
+#que5.wap two numbers using bitwise XOR
+
+a, b = 5, 10
+a = a ^ b
+b = a ^ b
+a = a ^ b
+print("a:", a, "b:", b)  # a: 10 b: 5
+
+#que6. Check if divisible by both 4 and 6
+
+num = 24
+if num % 4 == 0 and num % 6 == 0:
+    print("Divisible by both 4 and 6")
+
+#que7.Calculate electricity bill using slab rates
+
+units = 250
+bill = 0
+
+if units <= 100:
+    bill = units * 5
+elif units <= 200:
+    bill = (100 * 5) + (units - 100) * 7
+else:
+    bill = (100 * 5) + (100 * 7) + (units - 200) * 10
+
+print("Total Bill:", bill)
+
+#que8. Check whether three sides can form a triangle
+
+a, b, c = 3, 4, 5
+if (a + b > c) and (a + c > b) and (b + c > a):
+    print("Valid Triangle")
+else:
+    print("Invalid Triangle")
+
+#que9. Determine type of triangle
+
+a, b, c = 5, 5, 5
+if a == b == c:
+    print("Equilateral")
+elif a == b or b == c or a == c:
+    print("Isosceles")
+else:
+    print("Scalene")
+
+#que 10 . Simple ATM Menu
+
+balance = 1000.0
+choice = int(input("1. Balance  2. Deposit  3. Withdraw\nEnter choice: "))
+
+if choice == 1:
+    print("Balance:", balance)
+elif choice == 2:
+    amt = float(input("Enter deposit amount: "))
+    balance += amt
+    print("Updated Balance:", balance)
+elif choice == 3:
+    amt = float(input("Enter withdrawal amount: "))
+    if amt <= balance:
+        balance -= amt
+        print("Updated Balance:", balance)
+    else:
+        print("Insufficient funds")
+else:
+    print("Invalid option")   
+
+#que 11.Income Tax Calculator
+
+income = 750000
+tax = 0
+
+if income > 1000000:
+    tax += (income - 1000000) * 0.20 + 75000
+elif income > 500000:
+    tax += (income - 500000) * 0.10
+
+print("Calculated Tax:", tax)
+
+#que 12 . Create a menu-driven calculator using if-elif.
+
+num1, num2 = 10, 5
+op = input("Enter operator (+, -, *, /): ")
+
+if op == '+':
+    print("Result:", num1 + num2)
+elif op == '-':
+    print("Result:", num1 - num2)
+elif op == '*':
+    print("Result:", num1 * num2)
+elif op == '/':
+    print("Result:", num1 / num2 if num2 != 0 else "Cannot divide by zero")
+
+#que 13 . Print all prime numbers between 1 and n.
+
+n = 20
+for num in range(2, n + 1):
+    is_prime = True
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            is_prime = False
+            break
+    if is_prime:
+        print(num, end=" ")
+print()
+
+#que 14. Find the factorial of a number using a loop.
+n = 5
+fact = 1
+for i in range(1, n + 1):
+    fact *= i
+print("Factorial:", fact)  # 120
+
+#que 15. Print the Fibonacci series up to n terms.
+
+n = 7
+a, b = 0, 1
+for _ in range(n):
+    print(a, end=" ")
+    a, b = b, a + b
+print()
+
+# 16. Check whether a number is an Armstrong number.
+num = 153
+temp = num
+digits = len(str(num))
+total_sum = 0
+
+while temp > 0:
+    d = temp % 10
+    total_sum += d ** digits
+    temp //= 10
+
+if total_sum == num:
+    print(num, "is an Armstrong number")
+
+
+# 17. Reverse a number and check if it is a palindrome.
+num = 121
+temp = num
+rev = 0
+
+while temp > 0:
+    rev = (rev * 10) + (temp % 10)
+    temp //= 10
+
+print("Reversed:", rev)
+print("Is Palindrome:", num == rev)
+
+
+# 18. Find the Greatest Common Divisor (GCD) of two numbers.
+a, b = 48, 18
+while b:
+    a, b = b, a % b
+print("GCD:", a)
+
+# 19. Write a function to check if a string is a palindrome.
+def is_string_palindrome(s):
+    cleaned = s.lower().replace(" ", "")
+    return cleaned == cleaned[::-1]
+
+print("Is 'madam' palindrome?", is_string_palindrome("madam"))
+
+
+# 20. Write a function to count vowels and consonants in a string.
+def count_vowels_consonants(s):
+    vowels = "aeiouAEIOU"
+    v_count = c_count = 0
+    for ch in s:
+        if ch.isalpha():
+            if ch in vowels:
+                v_count += 1
+            else:
+                c_count += 1
+    return v_count, c_count
+
+v, c = count_vowels_consonants("Hello World")
+print("Vowels:", v, "Consonants:", c)
+
+
+# 21. Create a function to calculate simple and compound interest.
+def calculate_interest(p, r, t):
+    si = (p * r * t) / 100
+    ci = p * ((1 + r / 100) ** t) - p
+    return si, ci
+
+si, ci = calculate_interest(1000, 5, 2)
+print("SI:", si, "| CI:", round(ci, 2))
+
+
+# 22. Write a function to return all factors of a number.
+def get_factors(n):
+    return [i for i in range(1, n + 1) if n % i == 0]
+
+print("Factors of 12:", get_factors(12))
+
+
+# 23. Write a function to find the second-largest number in a list.
+def second_largest(lst):
+    unique = list(set(lst))
+    unique.sort()
+    return unique[-2] if len(unique) >= 2 else None
+
+print("Second largest:", second_largest([10, 20, 4, 45, 99, 99]))
+
+# 24. Merge two lists without duplicates.
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+merged = list(set(list1 + list2))
+print("Merged list:", merged)
+
+
+# 25. Find the second-largest and second-smallest elements.
+lst = [12, 35, 1, 10, 34, 1]
+unique = sorted(list(set(lst)))
+print("Second Smallest:", unique[1])
+print("Second Largest:", unique[-2])
+
+
+# 26. Rotate a list to the left by k positions.
+lst = [1, 2, 3, 4, 5]
+k = 2
+k = k % len(lst)
+rotated = lst[k:] + lst[:k]
+print("Rotated list:", rotated)
+
+
+# 27. Separate even and odd numbers into two lists.
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+evens = [x for x in numbers if x % 2 == 0]
+odds = [x for x in numbers if x % 2 != 0]
+print("Evens:", evens)
+print("Odds:", odds)
+
+
+# 28. Find the common elements between two lists.
+l1 = [1, 2, 3, 4]
+l2 = [3, 4, 5, 6]
+common = list(set(l1) & set(l2))
+print("Common elements:", common)
+
+# 29. Count the frequency of each element in a tuple.
+tup = (1, 2, 2, 3, 1, 4, 2)
+freq = {item: tup.count(item) for item in set(tup)}
+print("Frequency:", freq)
+
+
+# 30. Find the union, intersection, and difference of two sets.
+s1 = {1, 2, 3, 4}
+s2 = {3, 4, 5, 6}
+print("Union:", s1 | s2)
+print("Intersection:", s1 & s2)
+print("Difference (s1 - s2):", s1 - s2)
+
+
+# 31. Check whether one set is a subset of another.
+setA = {1, 2}
+setB = {1, 2, 3, 4}
+print("Is subset:", setA.issubset(setB))
+
+# 32. Count the frequency of words in a sentence.
+text = "apple banana apple orange banana apple"
+words = text.split()
+word_count = {}
+for w in words:
+    word_count[w] = word_count.get(w, 0) + 1
+print("Word count:", word_count)
+
+
+# 33. Create a dictionary from two lists (keys and values).
+keys = ["name", "age", "city"]
+values = ["Alice", 25, "Pune"]
+res_dict = dict(zip(keys, values))
+print("Dictionary:", res_dict)
+
+
+# 34. Sort a dictionary by its values.
+d = {'apple': 5, 'banana': 2, 'cherry': 8}
+sorted_d = dict(sorted(d.items(), key=lambda item: item[1]))
+print("Sorted dictionary:", sorted_d)
+
+# 35. Read a text file and count the number of lines, words, and characters.
+# 36. Copy only the even-numbered lines from one file to another.
+try:
+    with open("sample.txt", "w") as f:
+        f.write("Line one\nLine two\nLine three\nLine four\n")
+    
+    lines = words = chars = 0
+    with open("sample.txt", "r") as file:
+        for line in file:
+            lines += 1
+            words += len(line.split())
+            chars += len(line)
+    print(f"File Stats (Q35) -> Lines: {lines}, Words: {words}, Chars: {chars}")
+    
+    with open("sample.txt", "r") as src, open("output.txt", "w") as dest:
+        for line_num, line in enumerate(src, start=1):
+            if line_num % 2 == 0:
+                dest.write(line)
+    print("Even-numbered lines copied successfully (Q36).")
+except Exception as e:
+    print("File operation error:", e)
+
+    # 37. Handle invalid integer input using try-except.
+try:
+    num = int("123")
+    print("Valid integer parsed (Q37):", num)
+except ValueError:
+    print("Invalid input!")
+
+
+# 38. Handle file-not-found errors while reading a file.
+try:
+    with open("non_existent_file.txt", "r") as f:
+        content = f.read()
+except FileNotFoundError:
+    print("Error: The specified file does not exist (Q38).")
+
+    # 39. Create a random password generator using the random and string modules.
+import random
+import string
+
+def generate_password(length=8):
+    chars = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(chars) for _ in range(length))
+
+print("Generated Password (Q39):", generate_password(12))
+
+
+# 40. Use the datetime module to calculate the number of days between two dates.
+from datetime import datetime
+
+date_str1 = "2026-01-01"
+date_str2 = "2026-11-05"
+
+d1 = datetime.strptime(date_str1, "%Y-%m-%d")
+d2 = datetime.strptime(date_str2, "%Y-%m-%d")
+
+days_between = abs((d2 - d1).days)
+print("Days difference (Q40):", days_between)[cite: 1, 2]
+
+
+
+
